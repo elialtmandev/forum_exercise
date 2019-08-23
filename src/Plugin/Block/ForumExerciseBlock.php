@@ -123,9 +123,15 @@ dsm($values, "blockSubmit values");
     $user_name = $this->current_user->getDisplayName();
     $user_last_login = date('F jS, Y g:i a', $user->login); 
 
+    $config = $this->getConfiguration();
+    $admin_message = $config['forum_exercise_admin_message'];
+
     $content['hello_message'] = $this->t("Hello ") . $user_name . "!";
     $content['last_login'] = $this->t("Your last login was ") . $user_last_login . '.';
     $content['profile_link'] = Link::fromTextAndUrl($this->t("Visit your profile"), Url::fromRoute('user.page'));
+    $content['admin_message'] = $admin_message;
+
+dsm($content, "content");
 
     return [
       '#theme' => 'forum_exercise_block',
