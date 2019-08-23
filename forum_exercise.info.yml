@@ -1,0 +1,6 @@
+name: 'Forum Exercise'
+type: module
+description: 'TODO: add description'
+package: 'Forum'
+core: 8.x
+version: '8.x-1.0'
