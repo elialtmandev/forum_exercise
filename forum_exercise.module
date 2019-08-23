@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Module file for forum_exercise.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function forum_exercise_theme() {
+  return [
+    'forum_exercise_block' => [
+      'variables' => ['content' => NULL],
+    ],
+  ];
+}
+

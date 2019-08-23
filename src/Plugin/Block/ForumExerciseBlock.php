@@ -71,8 +71,12 @@ dsm($markup, "markup");
 
 dsm(Link::fromTextAndUrl("Visit your profile", Url::fromUserInput('/user')), "buildlink");
 
+    $content['foo'] = 'bar';
+
     return [
       '#markup' => $markup,
+      '#theme' => 'forum_exercise_block',
+      '#content' => $content,      
       '#cache' => array(
         'contexts' => array(
           'session'
