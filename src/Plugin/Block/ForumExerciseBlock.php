@@ -57,7 +57,7 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
     $user_name = $this->current_user->getDisplayName();
 dsm(drupal_get_user_timezone(), "user tz");
 //    $user_last_login_prep = new DateTime($user->login, $user_timezone);
-    $user_last_login = date('F jS, Y g:ia', $user->login); //$user->login;
+    $user_last_login = $user->login ? date('F jS, Y g:ia', $user->login) : date('F jS, Y g:ia', \Drupal::time()->getCurrentTime()); //$user->login;
 dsm($user_last_login);
 
     $markup[] = "Hello " . $user_name . "!";
@@ -69,6 +69,7 @@ dsm($markup, "markup");
 
     return [
       '#markup' => $markup,
+      '#cache' => array('max-age' => 0),
     ];
   }
 }
