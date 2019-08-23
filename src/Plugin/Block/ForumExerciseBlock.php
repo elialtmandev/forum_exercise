@@ -99,7 +99,6 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
       '#title' => $this->t('Forum Admin Message'),
       '#default_value' => $this->configuration['forum_exercise_admin_message'],
     ];
-dsm($form, "blockForm form");
     return $form;
   }
 
@@ -109,7 +108,6 @@ dsm($form, "blockForm form");
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
     $values = $form_state->getValues();
-dsm($values, "blockSubmit values");
     $this->configuration['forum_exercise_admin_message'] = $values['forum_exercise_admin_message'];
   }
 
@@ -130,8 +128,6 @@ dsm($values, "blockSubmit values");
     $content['last_login'] = $this->t("Your last login was ") . $user_last_login . '.';
     $content['profile_link'] = Link::fromTextAndUrl($this->t("Visit your profile"), Url::fromRoute('user.page'));
     $content['admin_message'] = $admin_message;
-
-dsm($content, "content");
 
     return [
       '#theme' => 'forum_exercise_block',
