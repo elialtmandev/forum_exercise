@@ -46,7 +46,7 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
 
   public function defaultConfiguration() {
     return [
-      'forum_exercise_admin_message' => 'test default text',
+      'forum_exercise_admin_message' => '',
     ];
   }
 

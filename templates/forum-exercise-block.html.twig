@@ -1,3 +1,7 @@
 {{ content.hello_message }}<br>
 {{ content.last_login }}<br>
 {{ content.profile_link }}
+{% if content.admin_message %}
+  <br>{{ content.admin_message }}
+{% endif %}
+
