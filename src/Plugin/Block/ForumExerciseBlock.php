@@ -5,7 +5,9 @@ namespace Drupal\forum_exercise\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\Session\AccountInterface;
+//use Drupal\Core\Session\AccountProxy;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Provides a 'Forum Exercise' Block.
@@ -21,8 +23,7 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
   /**
    * Constructs a new ForumExerciseBlock.
    */
-
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountProxy $current_user) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $current_user) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->current_user = $current_user;
   }
@@ -42,13 +43,21 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
   /**
    * {@inheritdoc}
    */
+  // prevent block from being initialized for anonymous users (resulting in error)
+  public function blockAccess(AccountInterface $account) {
+    return AccessResult::allowedIf($account->isAuthenticated());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function build() {
 //    $user = \Drupal\user\Entity\User::load($this->current_user->id());
     $user = $this->current_user->getAccount();
     $user_name = $this->current_user->getDisplayName();
 dsm(drupal_get_user_timezone(), "user tz");
 //    $user_last_login_prep = new DateTime($user->login, $user_timezone);
-    $user_last_login = date('m-d-Y H:i:s', $user->login); //$user->login;
+    $user_last_login = date('F jS, Y g:ia', $user->login); //$user->login;
 dsm($user_last_login);
 
     $markup[] = "Hello " . $user_name . "!";
