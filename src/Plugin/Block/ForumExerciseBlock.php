@@ -70,13 +70,15 @@ dsm($user_last_login);
 dsm($markup, "markup");
 
 dsm(Link::fromTextAndUrl("Visit your profile", Url::fromUserInput('/user')), "buildlink");
-
-    $content['foo'] = 'bar';
+    
+    $content['hello_message'] = "Hello " . $user_name . "!";
+    $content['last_login'] = $this->t("Your last login was a") . $user_last_login . '.';
+    $content['profile_link'] = Link::fromTextAndUrl("Visit your profile", Url::fromUserInput('/user'));
 
     return [
-      '#markup' => $markup,
+//      '#markup' => $markup,
       '#theme' => 'forum_exercise_block',
-      '#content' => $content,      
+      '#content' => $content,
       '#cache' => array(
         'contexts' => array(
           'session'
