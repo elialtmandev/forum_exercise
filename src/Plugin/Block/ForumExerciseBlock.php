@@ -43,8 +43,15 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function build() {
+//    $user = \Drupal\user\Entity\User::load($this->current_user->id());
+    $user = $this->current_user->getAccount();
     $user_name = $this->current_user->getDisplayName();
-    $markup =  "Hello " . $user_name . "!";
+    $user_last_login = $user->login;
+dsm($user_last_login);
+
+    $markup = "Hello " . $user_name . "!";
+    $markup .= "<br>Your last login was " . $user_last_login;
+    $markup .= "<br><a href='/user'>Visit your profile</a>";
 
     return [
       '#markup' => $markup,
