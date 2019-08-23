@@ -46,12 +46,17 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
 //    $user = \Drupal\user\Entity\User::load($this->current_user->id());
     $user = $this->current_user->getAccount();
     $user_name = $this->current_user->getDisplayName();
-    $user_last_login = $user->login;
+dsm(drupal_get_user_timezone(), "user tz");
+//    $user_last_login_prep = new DateTime($user->login, $user_timezone);
+    $user_last_login = date('m-d-Y H:i:s', $user->login); //$user->login;
 dsm($user_last_login);
 
-    $markup = "Hello " . $user_name . "!";
-    $markup .= "<br>Your last login was " . $user_last_login;
-    $markup .= "<br><a href='/user'>Visit your profile</a>";
+    $markup[] = "Hello " . $user_name . "!";
+    $markup[] = "Your last login was " . $user_last_login;
+    $markup[] = "<a href='/user'>Visit your profile</a>";
+
+    $markup = implode($markup, "<br>");
+dsm($markup, "markup");
 
     return [
       '#markup' => $markup,
