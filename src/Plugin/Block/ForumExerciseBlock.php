@@ -8,6 +8,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 //use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 
 /**
  * Provides a 'Forum Exercise' Block.
@@ -66,6 +68,8 @@ dsm($user_last_login);
 
     $markup = implode($markup, "<br>");
 dsm($markup, "markup");
+
+dsm(Link::fromTextAndUrl("Visit your profile", Url::fromUserInput('/user')), "buildlink");
 
     return [
       '#markup' => $markup,
