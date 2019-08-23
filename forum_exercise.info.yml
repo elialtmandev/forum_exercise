@@ -1,7 +1,7 @@
 name: 'Forum Exercise'
 type: module
-description: 'TODO: add description'
-package: 'Forum'
+description: 'Forum One Drupal Coding Exercise module.'
+package: 'Forum One'
 core: 8.x
 version: '8.x-1.0'
 dependencies:
