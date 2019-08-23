@@ -61,6 +61,8 @@ class ForumExerciseBlock extends BlockBase implements ContainerFactoryPluginInte
    *   The plugin implementation definition.
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current_user service.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form_builder service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $current_user, FormBuilderInterface $form_builder) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
